@@ -133,7 +133,7 @@ export default function TopSaverToday() {
           </a>
 
           {/* Countdown Pill matching screenshot */}
-          <div className="flex items-center gap-2 bg-[#ea4335] text-white px-3.5 py-1.5 rounded-md text-xs font-bold shadow-xs">
+          <div className="flex items-center gap-2 bg-red-500 text-white px-3.5 py-1.5 rounded-md text-xs font-bold shadow-xs">
             <Clock className="w-3.5 h-3.5" />
             <span className="tracking-wide text-[11px] font-medium opacity-90">
               Expires in:
@@ -147,17 +147,17 @@ export default function TopSaverToday() {
         </div>
 
         {/* Navigation Arrows */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             type="button"
-            className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+            className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
             aria-label="Previous offer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             type="button"
-            className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+            className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
             aria-label="Next offer"
           >
             <ChevronRight className="w-4 h-4" />
@@ -168,12 +168,12 @@ export default function TopSaverToday() {
       {/* Main 3-column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Left Column: Featured "Deal of the Day" Card (lg:col-span-3) */}
-        <div className="lg:col-span-3 bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between relative group hover:border-gray-200 transition-all">
+        <div className="lg:col-span-3 bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between relative group hover:border-amber-300 hover:shadow-md transition-all">
           {/* Wishlist button */}
           <button
             type="button"
             onClick={() => toggleWishlist(dealProduct.id)}
-            className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-50 text-gray-400 hover:text-rose-500 transition-colors z-10"
+            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white hover:bg-amber-500 hover:text-white border border-gray-100 shadow-2xs flex items-center justify-center text-gray-400 transition-all z-10 cursor-pointer"
             title="Add to Wishlist"
           >
             <Heart
@@ -218,7 +218,7 @@ export default function TopSaverToday() {
             </div>
 
             {/* Price */}
-            <div className="text-xl font-black text-gray-900 mb-3">
+            <div className="text-2xl font-black font-mono text-amber-600 mb-3">
               ${dealProduct.price.toFixed(2)}
             </div>
 
@@ -232,7 +232,7 @@ export default function TopSaverToday() {
                   }}
                 />
               </div>
-              <span className="text-[11px] font-medium text-gray-400 mt-1 block">
+              <span className="text-[11px] font-medium text-gray-400 mt-1 block font-mono">
                 Sold: {dealProduct.sold}/{dealProduct.total}
               </span>
             </div>
@@ -242,21 +242,21 @@ export default function TopSaverToday() {
           <div className="pt-2 border-t border-gray-100">
             <div className="flex items-center justify-between text-xs font-bold text-gray-700 mb-3">
               {/* Stepper */}
-              <div className="flex items-center border border-gray-200 rounded-md overflow-hidden bg-gray-50/50">
+              <div className="inline-flex items-center border border-gray-200 rounded-lg bg-gray-50/60 p-1">
                 <button
                   type="button"
                   onClick={() => setDealQuantity(Math.max(1, dealQuantity - 1))}
-                  className="px-2.5 py-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+                  className="w-7 h-7 rounded bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-2xs transition-colors cursor-pointer"
                 >
                   <Minus className="w-3 h-3" />
                 </button>
-                <span className="px-2.5 py-1 text-xs font-semibold text-gray-900 min-w-[24px] text-center">
+                <span className="w-9 text-center text-xs font-bold text-gray-900 font-mono">
                   {dealQuantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setDealQuantity(dealQuantity + 1)}
-                  className="px-2.5 py-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+                  className="w-7 h-7 rounded bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-2xs transition-colors cursor-pointer"
                 >
                   <Plus className="w-3 h-3" />
                 </button>
@@ -267,7 +267,7 @@ export default function TopSaverToday() {
                 <span className="text-[11px] text-gray-400 mr-1 font-normal">
                   Total:
                 </span>
-                <span className="font-extrabold text-gray-900 text-sm">
+                <span className="font-extrabold text-gray-900 text-sm font-mono">
                   ${(dealPrice * dealQuantity).toFixed(2)}
                 </span>
               </div>
@@ -287,7 +287,7 @@ export default function TopSaverToday() {
                   dealQuantity
                 )
               }
-              className="w-full bg-[#fab528] hover:bg-[#e59d12] text-gray-900 font-extrabold text-xs uppercase tracking-wider py-3 rounded-md transition-all shadow-xs hover:shadow active:scale-[0.99]"
+              className="w-full bg-[#fab528] hover:bg-[#e59d12] text-gray-900 font-bold text-xs uppercase tracking-wider py-2.5 rounded-lg transition-all duration-200 shadow-xs hover:shadow-md active:scale-[0.98] cursor-pointer"
             >
               Add To Cart
             </button>
@@ -299,11 +299,11 @@ export default function TopSaverToday() {
           {middleProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col justify-between group hover:border-gray-200 hover:shadow-md transition-all relative"
+              className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col justify-between group hover:border-amber-300 hover:shadow-md transition-all relative"
             >
               {/* Discount Badge if available */}
               {product.discount && (
-                <span className="absolute top-3 left-3 bg-[#ea4335] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded">
+                <span className="absolute top-3 left-3 bg-red-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-md shadow-2xs font-sans">
                   {product.discount}
                 </span>
               )}
@@ -312,7 +312,7 @@ export default function TopSaverToday() {
               <button
                 type="button"
                 onClick={() => toggleWishlist(product.id)}
-                className="absolute top-3 right-3 p-1 rounded-full text-gray-300 hover:text-rose-500 transition-colors z-10"
+                className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/80 hover:bg-amber-500 hover:text-white border border-gray-100 shadow-2xs flex items-center justify-center text-gray-400 transition-colors z-10 cursor-pointer"
               >
                 <Heart
                   className={`w-3.5 h-3.5 ${
@@ -360,11 +360,11 @@ export default function TopSaverToday() {
 
                   {/* Price */}
                   <div className="flex items-baseline gap-1.5 mb-3">
-                    <span className="text-base font-extrabold text-gray-900">
+                    <span className="text-base font-extrabold text-gray-900 font-mono">
                       ${product.price.toFixed(2)}
                     </span>
                     {product.oldPrice && (
-                      <span className="text-xs text-gray-400 line-through">
+                      <span className="text-xs text-gray-400 line-through font-mono">
                         ${product.oldPrice.toFixed(2)}
                       </span>
                     )}
@@ -381,7 +381,7 @@ export default function TopSaverToday() {
                       }}
                     />
                   </div>
-                  <span className="text-[10px] font-medium text-gray-400 mt-1 block">
+                  <span className="text-[10px] font-medium text-gray-400 mt-1 block font-mono">
                     Sold: {product.sold}/{product.total}
                   </span>
                 </div>
@@ -405,7 +405,7 @@ export default function TopSaverToday() {
 
           {/* Header text */}
           <div className="relative z-10 mb-4">
-            <h3 className="text-3xl font-black text-[#ea4335] tracking-tight mb-1">
+            <h3 className="text-3xl font-black text-red-500 tracking-tight mb-1 font-mono">
               15% OFF
             </h3>
             <p className="text-xs font-semibold text-gray-700 leading-relaxed">
@@ -436,7 +436,7 @@ export default function TopSaverToday() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="w-full bg-white border border-gray-200 rounded-md pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none focus:border-amber-400 shadow-2xs"
+                    className="w-full bg-white border border-gray-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 rounded-lg pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none shadow-2xs transition-all"
                   />
                 </div>
 
@@ -449,7 +449,7 @@ export default function TopSaverToday() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
-                    className="w-full bg-white border border-gray-200 rounded-md pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none focus:border-amber-400 shadow-2xs"
+                    className="w-full bg-white border border-gray-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 rounded-lg pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none shadow-2xs transition-all"
                   />
                 </div>
 
@@ -462,14 +462,14 @@ export default function TopSaverToday() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Re-enter Password"
-                    className="w-full bg-white border border-gray-200 rounded-md pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none focus:border-amber-400 shadow-2xs"
+                    className="w-full bg-white border border-gray-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 rounded-lg pl-9 pr-3 py-2 text-xs text-gray-800 placeholder-gray-400 outline-none shadow-2xs transition-all"
                   />
                 </div>
 
                 {/* Register Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#fab528] hover:bg-[#e59d12] text-gray-900 font-extrabold text-xs uppercase tracking-wider py-2.5 rounded-md transition-all shadow-xs active:scale-[0.99] mt-2"
+                  className="w-full bg-[#fab528] hover:bg-[#e59d12] text-gray-900 font-bold text-xs uppercase tracking-wider py-2.5 rounded-lg transition-all duration-200 active:scale-[0.98] shadow-xs mt-2 cursor-pointer"
                 >
                   Register Now
                 </button>

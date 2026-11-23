@@ -248,6 +248,26 @@ export function Dialog({
 
 // --- Compound Subcomponents ---
 
+export function DialogBadge({
+  variant = "brand",
+  children,
+  className = "",
+  ...props
+}: {
+  variant?: DialogIconVariant;
+  children: React.ReactNode;
+  className?: string;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-2xs mb-1.5 ${iconVariantClasses[variant]} ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function DialogHeader({
   className = "",
   children,

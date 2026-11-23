@@ -164,11 +164,11 @@ export default function JustLanding() {
         </div>
 
         {/* Navigation Arrows */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={() => scroll("left")}
-            className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+            className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
             aria-label="Previous landing products"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -176,7 +176,7 @@ export default function JustLanding() {
           <button
             type="button"
             onClick={() => scroll("right")}
-            className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+            className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
             aria-label="Next landing products"
           >
             <ChevronRight className="w-4 h-4" />
@@ -192,11 +192,11 @@ export default function JustLanding() {
         {displayList.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm flex flex-col justify-between group hover:border-gray-200 hover:shadow-md transition-all relative"
+            className="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm flex flex-col justify-between group hover:border-amber-300 hover:shadow-md transition-all relative"
           >
             {/* Discount Tag */}
             {product.discount && (
-              <span className="absolute top-2.5 left-2.5 bg-[#ea4335] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded">
+              <span className="absolute top-2.5 left-2.5 bg-red-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-md shadow-2xs font-sans">
                 {product.discount}
               </span>
             )}
@@ -205,7 +205,7 @@ export default function JustLanding() {
             <button
               type="button"
               onClick={() => toggleWishlist(product.id)}
-              className="absolute top-2.5 right-2.5 p-1 rounded-full text-gray-300 hover:text-rose-500 transition-colors z-10"
+              className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/80 hover:bg-amber-500 hover:text-white border border-gray-100 shadow-2xs flex items-center justify-center text-gray-400 transition-colors z-10 cursor-pointer"
             >
               <Heart
                 className={`w-3.5 h-3.5 ${
@@ -255,11 +255,11 @@ export default function JustLanding() {
               {/* Price & Quick Add Button */}
               <div className="flex items-center justify-between pt-2 border-t border-gray-50">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-sm font-black text-gray-900">
+                  <span className="text-sm font-black text-gray-900 font-mono">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.oldPrice && (
-                    <span className="text-[11px] text-gray-400 line-through">
+                    <span className="text-[11px] text-gray-400 line-through font-mono">
                       ${product.oldPrice.toFixed(2)}
                     </span>
                   )}
@@ -275,7 +275,7 @@ export default function JustLanding() {
                       image: product.image,
                     })
                   }
-                  className="p-1.5 rounded-full bg-gray-100 hover:bg-[#fab528] text-gray-700 hover:text-gray-950 transition-colors"
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#fab528] text-gray-700 hover:text-gray-950 flex items-center justify-center transition-colors shadow-2xs cursor-pointer"
                   title="Quick add to cart"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />

@@ -71,7 +71,7 @@ export default function HeroBanners() {
             <div>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-md bg-white hover:bg-gray-900 text-gray-900 hover:text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-white hover:bg-gray-900 text-gray-900 hover:text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all duration-200 border border-gray-200 active:scale-[0.98]"
               >
                 <span>{currentSlide.buttonText}</span>
                 <ChevronRight className="w-4 h-4" />
@@ -116,7 +116,7 @@ export default function HeroBanners() {
 
             <Link
               href="/products?onSale=true"
-              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-md bg-white text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all shadow-sm"
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-lg bg-white text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all shadow-xs hover:shadow-md active:scale-[0.98]"
             >
               <span>Shop Now</span>
               <ArrowRight className="w-3.5 h-3.5" />

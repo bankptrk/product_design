@@ -95,6 +95,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/overview" className="text-gray-800 font-bold hover:text-amber-700 transition-colors flex items-center gap-1">
+                  <span>UI Flow Overview</span>
+                  <span className="text-[9px] uppercase px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 font-extrabold">React Flow</span>
+                </Link>
+              </li>
+              <li>
                 <a href="#" className="hover:text-amber-600 transition-colors">
                   About Us
                 </a>

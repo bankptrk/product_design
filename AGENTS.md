@@ -27,6 +27,27 @@
 - Ensure code passes type checking (`npm run build`) and linting (`npm run lint`) prior to submitting.
 - Place unit and integration tests adjacent to source files or inside `__tests__/` with `.test.ts` or `.spec.tsx` extensions.
 
+## UI Flow Overview Synchronization (`/overview`)
+Whenever you add a new page/route, modify an existing page's structure, or introduce new cross-page navigation links or modals, you **MUST** update the interactive React Flow architecture overview at `/overview` in the same change.
+
+### Current Registered Routes
+- `/` (`src/app/page.tsx`) — Home Storefront
+- `/products` (`src/app/products/page.tsx`) — Product Catalog & Search
+- `/products/[id]` (`src/app/products/[id]/page.tsx`) — Dynamic Product Detail Page
+- `/design` (`src/app/design/page.tsx`) — Design System & Tokens (`DESIGN.md` Spec)
+- `/overview` (`src/app/overview/page.tsx`) — UI Flow & Sitemap Overview (React Flow Canvas)
+
+### Mandatory Checklist When Adding or Updating Pages
+1. **Update Route & Link Metadata (`src/data/uiFlowData.ts`)**:
+   - Add or update the page definition in `PROJECT_PAGES` (including `id`, `route`, `sampleHref`, `title`, `subtitle`, `filePath`, `routeType`, `queryParams`, `components`, `modals`, `sections`, and `stats`).
+   - Register all new incoming and outgoing navigation triggers in `PAGE_FLOW_LINKS` (`sourcePageId`, `targetPageId`, `triggerComponent`, `triggerLabel`, `targetHref`, `category`, and `description`) and recalculate `incomingCount` / `outgoingCount` on affected pages.
+2. **Update UI Page Node Wireframe (`src/components/UIPageNode.tsx`)**:
+   - Add or update the route's miniature visual layout preview in `MiniPageWireframe` so the `<UIPageNode />` card accurately reflects the page UI on the React Flow canvas.
+3. **Update React Flow Canvas Layout & Edges (`src/app/overview/page.tsx`)**:
+   - Add node canvas coordinates `(x, y)` in `buildInitialNodes` and register the node accent color in `<MiniMap nodeColor={...} />`.
+   - Connect directional `<UIFlowEdge />` definitions in `buildInitialEdges` using the appropriate handles (`top`, `bottom`, `left`, `right`) and `FlowCategory` (`shopping`, `breadcrumb`, `global-nav`, `self-dynamic`, or `system`).
+   - If new shared global providers or `<Dialog />` modal overlays are added, update `sharedNodes` in `buildInitialNodes`.
+
 ## Commit & Pull Request Guidelines
 - **Commit Messages**: Follow Conventional Commits format with concise, imperative descriptions:
   - `feat: add project detail page`

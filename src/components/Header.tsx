@@ -171,7 +171,7 @@ export default function Header() {
               title="Wishlist"
             >
               <Heart className="w-5 h-5 text-gray-600 hover:text-amber-500" />
-              <span className="absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] rounded-full bg-amber-400 text-black text-[10px] font-bold flex items-center justify-center px-1">
+              <span className="absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] rounded-full bg-[#fab528] text-gray-900 text-[10px] font-bold font-mono flex items-center justify-center px-1 shadow-2xs">
                 {wishlistCount}
               </span>
             </button>
@@ -180,7 +180,7 @@ export default function Header() {
             <div className="flex items-center gap-2 cursor-pointer group">
               <div className="relative p-1">
                 <ShoppingBag className="w-5 h-5 text-gray-700 group-hover:text-amber-500 transition-colors" />
-                <span className="absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] rounded-full bg-amber-400 text-black text-[10px] font-bold flex items-center justify-center px-1">
+                <span className="absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] rounded-full bg-[#fab528] text-gray-900 text-[10px] font-bold font-mono flex items-center justify-center px-1 shadow-2xs">
                   {cartCount}
                 </span>
               </div>
@@ -188,7 +188,7 @@ export default function Header() {
                 <span className="text-[10px] uppercase font-bold text-gray-400 block">
                   Your Cart
                 </span>
-                <span className="text-xs font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
+                <span className="text-xs font-bold font-mono text-gray-900 group-hover:text-amber-600 transition-colors">
                   ${cartTotal.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </div>
@@ -273,7 +273,14 @@ export default function Header() {
           </nav>
 
           {/* Right Action Links */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <Link
+              href="/overview"
+              className="flex items-center gap-1.5 text-xs font-bold text-gray-900 bg-gray-100 hover:bg-amber-100 px-3 py-1.5 rounded-full transition-colors border border-gray-200"
+            >
+              <span>UI Flow</span>
+            </Link>
+
             <Link
               href="/design"
               className="flex items-center gap-1.5 text-xs font-bold text-amber-900 bg-amber-400/20 hover:bg-amber-400/30 px-3 py-1.5 rounded-full transition-colors border border-amber-300/60"

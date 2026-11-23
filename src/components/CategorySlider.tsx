@@ -186,11 +186,11 @@ export default function CategorySlider() {
           </a>
 
           {/* Navigation Arrows */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={() => scroll("left")}
-              className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
               aria-label="Previous categories"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -198,7 +198,7 @@ export default function CategorySlider() {
             <button
               type="button"
               onClick={() => scroll("right")}
-              className="w-7 h-7 rounded border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
+              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 transition-colors shadow-2xs"
               aria-label="Next categories"
             >
               <ChevronRight className="w-4 h-4" />
@@ -220,10 +220,10 @@ export default function CategorySlider() {
               key={cat.id}
               href={`/products?category=${encodeURIComponent(cat.name.replace("\n", " "))}`}
               onClick={() => setActiveCategory(cat.name)}
-              className={`group cursor-pointer rounded-xl p-4 flex flex-col items-center justify-between text-center transition-all duration-200 bg-white ${
+              className={`group cursor-pointer rounded-2xl p-4 flex flex-col items-center justify-between text-center transition-all duration-200 bg-white ${
                 isSelected
-                  ? "border border-transparent ring-2 ring-amber-400/80 shadow-lg -translate-y-1"
-                  : "border border-gray-100 hover:border-gray-200 hover:shadow-md hover:-translate-y-0.5"
+                  ? "border border-transparent ring-2 ring-amber-400 shadow-md -translate-y-1"
+                  : "border border-gray-100 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
               }`}
             >
               {/* Icon Container */}

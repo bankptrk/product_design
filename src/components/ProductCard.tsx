@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Heart, Star, ShoppingBag, Eye, Minus, Plus } from "lucide-react";
+import Link from "next/link";
+import { Heart, Star, ShoppingBag, Eye } from "lucide-react";
 import { Product } from "@/types/product";
 import { useCart } from "@/context/CartContext";
+import Badge from "@/components/Badge";
+import QuantityStepper from "@/components/QuantityStepper";
 
 export interface ProductCardProps {
   product: Product;
@@ -42,17 +45,20 @@ export default function ProductCard({
         className={`group bg-white rounded-2xl border border-gray-100 hover:border-amber-300 transition-all duration-200 hover:shadow-md p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 ${className}`}
       >
         {/* Product Image & Badges */}
-        <div className="relative w-full sm:w-48 h-44 shrink-0 bg-[#f7f8fa] rounded-xl flex items-center justify-center p-3 overflow-hidden border border-gray-50">
+        <Link
+          href={`/products/${product.id}`}
+          className="relative w-full sm:w-48 h-44 shrink-0 bg-[#f7f8fa] rounded-xl flex items-center justify-center p-3 overflow-hidden border border-gray-50 block"
+        >
           {product.discount && (
-            <span className="absolute top-2.5 left-2.5 z-10 bg-red-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-md shadow-2xs">
-              {product.discount}
-            </span>
+            <div className="absolute top-2.5 left-2.5 z-10">
+              <Badge variant="discount">{product.discount}</Badge>
+            </div>
           )}
 
           {product.badge && (
-            <span className="absolute top-2.5 right-2.5 z-10 bg-amber-400 text-gray-900 text-[10px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider">
-              {product.badge}
-            </span>
+            <div className="absolute top-2.5 right-2.5 z-10">
+              <Badge variant="brand">{product.badge}</Badge>
+            </div>
           )}
 
           <Image
@@ -62,7 +68,7 @@ export default function ProductCard({
             sizes="(max-width: 640px) 100vw, 192px"
             className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
           />
-        </div>
+        </Link>
 
         {/* Content & Details */}
         <div className="flex-1 min-w-0 space-y-2 w-full text-left">
@@ -71,19 +77,20 @@ export default function ProductCard({
               {product.brand}
             </span>
             {isAvailable ? (
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <Badge variant="stock" dot>
                 In Stock
-              </span>
+              </Badge>
             ) : (
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full">
+              <Badge variant="out-of-stock">
                 Out of Stock
-              </span>
+              </Badge>
             )}
           </div>
 
           <h3 className="text-base font-bold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-1">
-            {product.name}
+            <Link href={`/products/${product.id}`}>
+              {product.name}
+            </Link>
           </h3>
 
           {/* Rating */}
@@ -156,27 +163,12 @@ export default function ProductCard({
           <div className="flex flex-col gap-2 w-full">
             {/* Quantity Stepper (DESIGN.md 6.1) */}
             <div className="flex items-center justify-between w-full">
-              <div className="inline-flex items-center border border-gray-200 rounded-lg bg-gray-50/60 p-0.5">
-                <button
-                  type="button"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-7 h-7 rounded bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-2xs cursor-pointer"
-                  aria-label="Decrease quantity"
-                >
-                  <Minus className="w-3 h-3" />
-                </button>
-                <span className="w-8 text-center text-xs font-bold text-gray-900">
-                  {quantity}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-7 h-7 rounded bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-2xs cursor-pointer"
-                  aria-label="Increase quantity"
-                >
-                  <Plus className="w-3 h-3" />
-                </button>
-              </div>
+              <QuantityStepper
+                value={quantity}
+                onChange={setQuantity}
+                size="sm"
+                ariaLabel={`Quantity for ${product.name}`}
+              />
 
               <div className="flex items-center gap-1.5">
                 {/* Quick View Button */}
@@ -240,13 +232,9 @@ export default function ProductCard({
       <div className="flex items-center justify-between w-full relative z-10">
         <div>
           {product.discount ? (
-            <span className="bg-red-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-md shadow-2xs">
-              {product.discount}
-            </span>
+            <Badge variant="discount">{product.discount}</Badge>
           ) : product.badge ? (
-            <span className="bg-amber-400 text-gray-900 text-[10px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider">
-              {product.badge}
-            </span>
+            <Badge variant="brand">{product.badge}</Badge>
           ) : (
             <span />
           )}
@@ -284,7 +272,10 @@ export default function ProductCard({
       </div>
 
       {/* Product Image */}
-      <div className="relative w-full h-40 my-3 flex items-center justify-center overflow-hidden">
+      <Link
+        href={`/products/${product.id}`}
+        className="relative w-full h-40 my-3 flex items-center justify-center overflow-hidden block"
+      >
         <Image
           src={product.image}
           alt={product.name}
@@ -292,7 +283,7 @@ export default function ProductCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
         />
-      </div>
+      </Link>
 
       {/* Meta Content */}
       <div className="flex flex-col flex-1 justify-between space-y-2">
@@ -301,7 +292,9 @@ export default function ProductCard({
             {product.brand}
           </span>
           <h4 className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-2 leading-snug">
-            {product.name}
+            <Link href={`/products/${product.id}`}>
+              {product.name}
+            </Link>
           </h4>
 
           {/* Rating */}
@@ -364,14 +357,13 @@ export default function ProductCard({
           ) : (
             <div className="mt-2">
               {isAvailable ? (
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <Badge variant="stock" dot>
                   In Stock
-                </span>
+                </Badge>
               ) : (
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                <Badge variant="out-of-stock">
                   Out of Stock
-                </span>
+                </Badge>
               )}
             </div>
           )}
